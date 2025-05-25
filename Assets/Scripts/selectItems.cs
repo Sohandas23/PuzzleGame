@@ -19,10 +19,14 @@ public class selectItems : MonoBehaviour, IPointerClickHandler
         if ((int)shape == Utility.ShapeIndex && (int)color == Utility.ColorIndex)
         {
             GameManager.Instance.PlaceItem(transform,transform.position);
+            GameManager.Instance.IncreaseIndex();
+            SoundManager.Instance.PlayPlaceItemSound();
+            
         }
         else
         {
-            GameManager.Instance.RemoveItem();
+            GameManager.Instance.RemoveItem(transform,transform.position);
+            SoundManager.Instance.PlayRemoveItemSound();
         }
     }
 }
