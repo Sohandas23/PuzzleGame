@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Utility
 {
    public static int ColorIndex = 0;
-   public static int ShapeIndex;
+   public static int ShapeIndex = 5; // Default to Rectangle
    public enum Colors{
       Red = 0,
       Green = 1,

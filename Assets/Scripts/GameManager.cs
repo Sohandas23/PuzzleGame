@@ -38,4 +38,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RemoveItem()
+    {
+        Debug.Log("Remove Item");
+    }
+    public void PlaceItem(Transform parent, Vector3 spawnPosition)
+    {
+        Debug.Log("Place Item");
+
+        var shapeIndex = Utility.ShapeIndex;
+        var colorIndex = Utility.ColorIndex;
+
+        var selectedPrefab = shapes[shapeIndex];
+        var selectedColor = Utility.GetColorFromIndex(colorIndex);
+
+        var newShape = Instantiate(selectedPrefab, spawnPosition, Quaternion.identity, parent);
+        var rectTransform = newShape.GetComponent<RectTransform>();
+        if (rectTransform != null)
+        {
+            rectTransform.sizeDelta = new Vector2(110, 110);
+        }
+        var shapeImage = newShape.GetComponent<Image>();
+        if (shapeImage != null)
+        {
+            shapeImage.color = selectedColor;
+        }
+        else
+        {
+            var sr = newShape.GetComponent<Image>();
+            if (sr != null)
+                sr.color = selectedColor;
+        }
+    }
+
+
 }
