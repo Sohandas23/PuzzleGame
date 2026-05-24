@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -58,14 +57,20 @@ public class GameManager : MonoBehaviour
     {
         indexForGameOver++;
 
-        if (indexForGameOver < 17) return;
+        if (indexForGameOver <= 16) return;
         Debug.Log("Game Over Triggered");
+        Invoke(nameof(ActiveGameOver), 0.5f);
+    }
+
+    private void ActiveGameOver()
+    {
         OnGameOver?.Invoke();
     }
 
     private void Start()
     {
-        UpdateColor();
+        ShapesSetColor(Utility.GetColorFromIndex(0));
+        //UpdateColor();
         OnGameOver += HandleGameOver;
     }
 
@@ -74,9 +79,14 @@ public class GameManager : MonoBehaviour
     {
         var selectedColor = Utility.GetColorFromIndex(Utility.ColorIndex);
 
+        ShapesSetColor(selectedColor);
+    }
+
+    private void ShapesSetColor(Color colorIndex)
+    {
         foreach (var shape in shapes)
         {
-            shape.GetComponent<Image>().color = selectedColor;
+            shape.GetComponent<Image>().color = colorIndex;
         }
     }
 
