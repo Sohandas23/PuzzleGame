@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public List<ShapePallete> shapes;
     public int indexForGameOver = 0;
     public GameObject gameOverPanel;
+    public Utility.Colors currentColor;
+    public Utility.Shapes currentShape;
 
     public event Action OnGameOver;
 
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ShapesSetColor(Utility.GetColorFromIndex(0));
-        //UpdateColor();
+        UpdateColor();
         OnGameOver += HandleGameOver;
     }
 

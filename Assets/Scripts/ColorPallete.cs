@@ -10,6 +10,7 @@ public class ColorPallete : MonoBehaviour,IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         SetColor(color);
+        GameManager.Instance.currentColor = color;
     }
 
     private void SetColor(Utility.Colors newColor)

@@ -10,6 +10,7 @@ public class ShapePallete : MonoBehaviour,IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         SetShape(shape);
+        GameManager.Instance.currentShape = shape;
     }
     private void SetShape(Utility.Shapes newShape)
     {
